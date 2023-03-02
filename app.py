@@ -12,7 +12,7 @@ app = Flask(__name__)
 #Loading the model
 RNN_model = pickle.load(open('RNN_model.pkl', 'rb'))
 tokenizer = pickle.load(open('tokenizer.pkl', 'rb'))
-RNN_model.load_weights("weights.h5")
+# RNN_model.load_weights("weights.h5")
 
 @app.route('/')
 def home():
@@ -36,7 +36,6 @@ def predict_api():
 @app.route('/predict', methods = ['POST'])
 def predict():
     data = [str(text) for text in request.form.values()]
-    # final_input = logreg_transformer.transform(pd.Series(data))
     print(data)
     new_data = tokenizer.texts_to_sequences(data)
     print(new_data)
